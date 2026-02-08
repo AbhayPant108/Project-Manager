@@ -1,0 +1,83 @@
+@Host = http://127.0.0.1:8000/
+@api_base = {{Host}}/api/v1
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcwNDgwODAyLCJpYXQiOjE3NzA0NzcyMDIsImp0aSI6IjFmMjY0NjM1NDBlZDQ1ZDU4OGVkOGNiZTU4ZmZhMzU0IiwidXNlcl9pZCI6IjI3YjczYmM5LTAzM2ItNDJiZi04N2YwLTM1MWQyMTEwM2Y5ZSIsInVzZXJuYW1lIjoiZGV2X2FiaGF5In0.jE1j2b7fKPjuvjB9aFCkFAetNtdjtWoq2GGmiaWYPbw
+@token2 =cb22f2f3-32dd-402a-8741-07789ef4c6c3
+@token3 =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcwNTYyNDUwLCJpYXQiOjE3NzA1NTg4NTAsImp0aSI6IjRiMjk3ZDY1YTI5MTQ1NmY4NTkyNDYzZWY3ZTZiYjk0IiwidXNlcl9pZCI6IjI3YjczYmM5LTAzM2ItNDJiZi04N2YwLTM1MWQyMTEwM2Y5ZSIsInVzZXJuYW1lIjoiZGV2X2FiaGF5In0.AUxnBGIt9CN0qDfrz4vu6ejhEeo6myP1oUU9NKybep4
+# GET access and refresh token
+POST {{api_base}}/auth/login/
+Content-Type: application/json
+
+{
+    "email":"abhay@example.com",
+    "password":"password123"
+}
+###
+GET  {{api_base}}/projects/{{token2}}/tasks/
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+# {
+#     "title":"New Task",
+#     "priority":"HIGH",
+#     "status":"INCOMPLETE",
+#     "due_date":"2026-12-2"
+# }
+###
+GET {{api_base}}/projects/{{token2}}
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+###
+GET {{api_base}}/users/me
+Content-Type: application/json
+Authorization: Bearer {{token}}
+###
+POST {{api_base}}/auth/token/verify/
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+###
+GET  {{api_base}}/dashboard
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+###
+GET {{api_base}}/projects/
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+###
+GET {{api_base}}/test/
+Content-Type: application/json
+Authorization: Bearer {{token3}}
+
+
+###
+POST {{api_base}}/user/register/
+Content-Type: application/json
+
+{
+    "username":"nomytype",
+    "email":"no@gmail.com",
+    "password":"password123"
+}
+
+###
+GET {{api_base}}/users/{{token3}}/profile
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{api_base}}/users/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+POST {{api_base}}/friend-requests/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "to_user":"{{token3}}"
+}
+
+POST {{api_base}}/friend-requests/{{token3}}/accept
+Content-Type: Bearer 
