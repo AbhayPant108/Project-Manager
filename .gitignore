@@ -9,6 +9,8 @@ venv/
 db.sqlite3
 media/
 staticfiles/
+script.py
+api.http
 
 # --- Node / React (Vite) ---
 # Logs
